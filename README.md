@@ -1,1 +1,3 @@
-# FinBERT-LSTM implementation of Canadian energy sector sentiment analysis
+# FinBERT-LSTM
+
+Implementation of Canadian Energy sector sentiment analysis.
