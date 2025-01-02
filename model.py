@@ -4,7 +4,7 @@ from granger_preprocess import granger_preprocess_data
 from granger_test import granger_causality_test
 
 # Load the data
-file_path = "./91293_sentiment.csv"
+file_path = "./data/91293_sentiment.csv"
 data = pd.read_csv(file_path)
 
 # Convert 'PubDate' to datetime
@@ -72,7 +72,7 @@ for date, group in data.groupby('PubDate'):
 daily_sentiment_df = pd.DataFrame(daily_sentiment_data)
 
 # Save the results to a new CSV file
-output_file = "./91293_sentiment_model.csv"
+output_file = "./data/91293_sentiment_model.csv"
 daily_sentiment_df.to_csv(output_file, index=False)
 
 # Run Granger Test

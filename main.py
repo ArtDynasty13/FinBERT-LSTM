@@ -7,7 +7,7 @@ if __name__ == "__main__":
     pipe = pipeline("text-classification", model="ProsusAI/finbert", device=0)  # Use GPU if available
 
     # File path to the dataset
-    file_path = "./91293.CSV"
+    file_path = "./data/91293.CSV"
 
     # Load and preprocess the data
     data = pd.read_csv(file_path)
@@ -35,6 +35,6 @@ if __name__ == "__main__":
     print(data.head())
 
     # Optionally, save to a new CSV file
-    output_file = "./91293_sentiment.csv"
+    output_file = "./data/91293_sentiment.csv"
     data.to_csv(output_file, index=False)
     print(f"Results saved to {output_file}")

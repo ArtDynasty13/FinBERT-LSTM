@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 def plot_sentiment_stock(start_date=None, end_date=None):
     # Load the sentiment and stock price data
-    sentiment_file_path = "./91293_sentiment_model.csv"
-    stock_file_path = "./HXE.csv"
+    sentiment_file_path = "./data/91293_sentiment_model.csv"
+    stock_file_path = "./data/HXE.csv"
 
     sentiment_data = pd.read_csv(sentiment_file_path)
     stock_data = pd.read_csv(stock_file_path)

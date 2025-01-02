@@ -1,10 +1,14 @@
 import pandas as pd
 from statsmodels.tsa.stattools import grangercausalitytests
+import os
 
 def granger_causality_test():
 
-    # Step 1: Load the cleaned data
-    granger_data_df = pd.read_csv('granger_data.csv', parse_dates=['Date'], index_col='Date')
+    # Define the path to the 'data' folder
+    data_folder = 'data'
+
+    # Step 1: Load the cleaned data from the 'data' folder
+    granger_data_df = pd.read_csv(os.path.join(data_folder, 'granger_data.csv'), parse_dates=['Date'], index_col='Date')
 
     # Step 2: Check for any remaining NaN values
     if granger_data_df.isna().sum().any():

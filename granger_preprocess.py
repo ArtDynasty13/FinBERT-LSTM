@@ -1,9 +1,13 @@
 import pandas as pd
+import os
 
 def granger_preprocess_data(start_date=None, end_date=None):
-    # Step 1: Load the datasets
-    sentiment_df = pd.read_csv('91293_sentiment_model.csv', parse_dates=['Date'], index_col='Date')
-    stock_df = pd.read_csv('HXE.csv', parse_dates=['Date'], index_col='Date')
+    # Define the path to the 'data' folder
+    data_folder = 'data'
+    
+    # Step 1: Load the datasets from the 'data' folder
+    sentiment_df = pd.read_csv(os.path.join(data_folder, '91293_sentiment_model.csv'), parse_dates=['Date'], index_col='Date')
+    stock_df = pd.read_csv(os.path.join(data_folder, 'HXE.csv'), parse_dates=['Date'], index_col='Date')
 
     # Step 2: Determine default start and end dates if not provided
     sentiment_start_date = sentiment_df.index.min()
@@ -37,9 +41,9 @@ def granger_preprocess_data(start_date=None, end_date=None):
     print("Number of NaN values remaining in the dataset after back-fill:")
     print(merged_df.isna().sum())
 
-    # Step 8: Save the cleaned dataset
-    merged_df.to_csv('granger_data.csv')
-    print("Cleaned data saved to 'granger_data.csv'")
+    # Step 8: Save the cleaned dataset to the 'data' folder
+    merged_df.to_csv(os.path.join(data_folder, 'granger_data.csv'))
+    print("Cleaned data saved to 'data/granger_data.csv'")
 
     print(f"Executing Granger Causality test from {start_date} to {end_date}...")
 
