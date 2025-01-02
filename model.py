@@ -36,6 +36,7 @@ data['sentiment_value'] = data['sentiment'].map(sentiment_mapping)
 
 # Initialize variables for sentiment calculations
 nudge_strength = 0.1
+neut_weight = 0.2
 current_sentiment = 0  # Start with an initial sentiment value of 0
 
 # Create a list to store daily sentiment data
@@ -54,7 +55,7 @@ for date, group in data.groupby('PubDate'):
     # Adjust sentiment based on the counts
     new_sentiment += pos_count * nudge_strength  # Positive articles nudge the sentiment up
     new_sentiment -= neg_count * nudge_strength  # Negative articles nudge the sentiment down
-    new_sentiment += neut_count * nudge_strength * -0.2 if new_sentiment > 0 else neut_count * nudge_strength * 0.2
+    new_sentiment += neut_count * nudge_strength * -neut_weight if new_sentiment > 0 else neut_count * nudge_strength * neut_weight
 
     # Store the results for the day
     daily_sentiment_data.append({
@@ -76,8 +77,8 @@ output_file = "./data/91293_sentiment_model.csv"
 daily_sentiment_df.to_csv(output_file, index=False)
 
 # Run Granger Test
-granger_preprocess_data()
-granger_causality_test()
+#granger_preprocess_data()
+#granger_causality_test()
 
 # Now that the filtered CSV is generated, pass the custom date range (or entire range) to the plot function
 if custom_range == 'y':
