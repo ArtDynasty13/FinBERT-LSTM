@@ -2,6 +2,7 @@ import pandas as pd
 from model_plot import plot_sentiment_stock
 from granger_preprocess import granger_preprocess_data
 from granger_test import granger_causality_test
+from model_error import calculate_spearman
 
 # Load the data
 file_path = "./data/91293_sentiment.csv"
@@ -76,11 +77,15 @@ daily_sentiment_df = pd.DataFrame(daily_sentiment_data)
 output_file = "./data/91293_sentiment_model.csv"
 daily_sentiment_df.to_csv(output_file, index=False)
 
-# Run Granger Test
-#granger_preprocess_data()
-#granger_causality_test()
+
 
 # Now that the filtered CSV is generated, pass the custom date range (or entire range) to the plot function
+
+# Run Granger Test
+# granger_preprocess_data()
+# granger_causality_test()
+calculate_spearman("./data/91293_sentiment_model.csv", "./data/HXE.csv")
+
 if custom_range == 'y':
     plot_sentiment_stock(start_date, end_date)
 else:
